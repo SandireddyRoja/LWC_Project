@@ -1,0 +1,83 @@
+<template>
+     <div style ="background-color: white;">   
+         <!-- Search box -->
+        <lightning-input
+            name="enter-search"
+            label="Search Posts"
+            type="search"
+            onchange={handleChange}
+        ></lightning-input>
+        <br/>
+         <!--Create Post  -->
+     <lightning-button variant="brand"
+       label="Create Post"
+       title="Create Post"
+       onclick={openModal}
+       class="slds-m-left_x-small">
+    </lightning-button>
+    <!--Use template if:true to display/hide popup based on isModalOpen value--> 
+    <template if:true={isModalOpen}>
+        <!-- Modal/Popup Box LWC starts here -->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box LWC header here -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Create SubReddit</h2>
+                </header>
+                  <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <!-- Modal/Popup Box LWC body starts here -->
+                    <lightning-record-edit-form object-api-name="Post__c" onsuccess={handleSuccess}>
+                <lightning-messages> </lightning-messages>
+                <lightning-input-field value ={subredditid} label = "SubReddit" field-name="Sub_Reddit__c"> </lightning-input-field>
+                <lightning-input-field  label = "Name" field-name="Name"> </lightning-input-field>
+                <lightning-button
+                    class="slds-m-top_small"
+                    type="submit"
+                    varient = "brand"
+                    label="Save"
+                >
+                </lightning-button>
+            </lightning-record-edit-form>
+                <!-- Modal/Popup Box LWC footer starts here -->
+                  </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+        <div class="slds-m-around_medium">
+            <!-- Showing all the Posy -->
+            <template if:true={postlist}>
+                <template for:each={postlist} for:item="eachitem">                   
+                    <div key={eachitem.Id} class="slds-box slds-text-heading_small">
+                        
+                         <lightning-icon icon-name="standard:account" alternative-text="Post" title="Post"></lightning-icon>
+                         <lightning-icon icon-name="utility:chevronup" alternative-text="Connected" size="xx-small"
+                         title="xx-small size" data-name={eachitem.Id} onclick={handleupvote}></lightning-icon>
+                         {eachitem.Upvote__c} -
+                         {eachitem.DownVote__c}
+                         <lightning-icon icon-name="utility:chevrondown" alternative-text="Connected" size="xx-small"
+                         title="xx-small size" data-name={eachitem.Id} onclick={handledownvote}></lightning-icon> 
+                         <lightning-accordion allow-multiple-sections-open>
+                             <!--Accordian view hide and show comment box-->
+                             <lightning-accordion-section key={eachitem.Id} name={eachitem.Id} label={eachitem.Name}>
+                                <a data-name={eachitem.Id} onclick={handleviewclick}>View Comments</a>
+                            
+                                 <lightning-textarea name="input1" label="Please Enter Comments" message-when-value-missing="An empty Comment cannot be posted."  onchange={handletextChange} ></lightning-textarea>
+                            
+                                 <a data-name={eachitem.Id} onclick={handlecommentclick}>Save</a>
+                             
+                             </lightning-accordion-section>
+                         </lightning-accordion>
+                         </div>              
+                </template>
+            </template>
+         </div>  
+</div>
+</template>

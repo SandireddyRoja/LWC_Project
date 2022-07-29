@@ -1,0 +1,33 @@
+<template>
+     <!--Displaying all the child comments-->
+       <template if:true={childcomments}>
+                      <template for:each={childcomments} for:item="eachitem">                   
+                    <div key={eachitem.Id} class="slds-box slds-text-heading_small">
+                        
+                         <lightning-icon icon-name="utility:chevronup" alternative-text="Connected" size="xx-small"
+                         title="xx-small size" data-name={eachitem.Id} onclick={handleupvote}></lightning-icon>
+                         {eachitem.Up_Vote__c} -
+                         {eachitem.Down_Vote__c}
+                         <lightning-icon icon-name="utility:chevrondown" alternative-text="Connected" size="xx-small"
+                         title="xx-small size" data-name={eachitem.Id} onclick={handledownvote}></lightning-icon> 
+                                  <lightning-icon icon-name="utility:user" alternative-text="Connected" size="xx-small"
+                         title="x-small size" data-name={eachitem.Id}></lightning-icon>
+                          {eachitem.Name}                     
+                         
+                         <br/>
+                         {eachitem.CreatedDate}
+                         <br/>
+                          <template if:true={Showreply}>
+                                <a data-name={eachitem.Id} onclick={handlereplyclick}>Reply</a>
+                          </template>
+                            <template if:true={Showreply}>        
+                                 <lightning-textarea name="input1" data-name={eachitem.Id} label="Please Enter Comments" onchange={handletextChange}></lightning-textarea>                            
+                                 <a data-name={eachitem.Id} onclick={handlereplycommentclick}>Save</a>
+                            </template>
+                                                      
+                         </div>
+                                                   
+                </template>
+            </template>   
+
+</template>

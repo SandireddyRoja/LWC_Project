@@ -1,0 +1,4 @@
+<aura:component implements="lightning:isUrlAddressable">
+    <c:redditpostcomponent></c:redditpostcomponent>
+	
+</aura:component>
