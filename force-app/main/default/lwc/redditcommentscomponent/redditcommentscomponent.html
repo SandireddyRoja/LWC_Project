@@ -11,11 +11,11 @@
                 <template for:each={comentslist} for:item="eachitem">                   
                     <div key={eachitem.Id} class="slds-box slds-text-heading_small">
                         
-                         <lightning-icon icon-name="utility:chevronup" alternative-text="Connected" size="xx-small"
+                         <lightning-icon icon-name="utility:like" alternative-text="Connected" size="xx-small"
                          title="xx-small size" data-name={eachitem.Id} onclick={handleupvote}></lightning-icon>
                          {eachitem.Up_Vote__c} -
                          {eachitem.Down_Vote__c}
-                         <lightning-icon icon-name="utility:chevrondown" alternative-text="Connected" size="xx-small"
+                         <lightning-icon icon-name="utility:dislike" alternative-text="Connected" size="xx-small"
                          title="xx-small size" data-name={eachitem.Id} onclick={handledownvote}></lightning-icon> 
                                   <lightning-icon icon-name="utility:user" alternative-text="Connected" size="xx-small"
                          title="x-small size" data-name={eachitem.Id}></lightning-icon>
