@@ -62,11 +62,11 @@
                     <p key={eachitem.Id} class="slds-box slds-text-heading_small">
                         
                          <lightning-icon icon-name="standard:account" alternative-text="Subreddit" title="Subreddit"></lightning-icon>
-                         <lightning-icon icon-name="utility:chevronup" alternative-text="Connected" size="xx-small"
+                         <lightning-icon icon-name="utility:like" alternative-text="Connected" size="small"
                          title="xx-small size" data-name={eachitem.Id} onclick={handleupvote}></lightning-icon>
                          {eachitem.Upvote__c} -
                          {eachitem.DownVote__c}
-                         <lightning-icon icon-name="utility:chevrondown" alternative-text="Connected" size="xx-small"
+                         <lightning-icon icon-name="utility:dislike" alternative-text="Connected" size="small"
                          title="xx-small size" data-name={eachitem.Id} onclick={handledownvote}></lightning-icon> 
                          <a data-name={eachitem.Id} onclick={handleclick}>{eachitem.Name}</a>
                            <br/>
