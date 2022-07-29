@@ -12,7 +12,7 @@ public class commentscontroller {
         List<Comments__c> commentslist= [Select id,Comment__c,Name,Posts__c,CreatedDate,Down_Vote__c,Up_Vote__c,Parent_Comment__c from Comments__c where Posts__c=:postid];
         return commentslist;
     }
-    // to fetch the all comments based on the post
+    // to fetch the all comments based on the posthh
      @AuraEnabled(cacheable=true)
     public static List<Comments__c> fetchcomments(Id postid){
         List<Comments__c> commentslist= [Select id,Comment__c,Name,Posts__c,CreatedDate,Posts__r.Name,Down_Vote__c,Up_Vote__c,Parent_Comment__c from Comments__c where Posts__c=:postid];
